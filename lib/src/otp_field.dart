@@ -5,10 +5,24 @@ import 'package:flutter/services.dart';
 ///
 /// Internally uses a single hidden [TextField], so pasting, backspace and
 /// SMS autofill (`AutofillHints.oneTimeCode`) work naturally.
+///
+/// By default only digits are accepted. Provide [inputFormatters] and
+/// [keyboardType] to allow letters.
+///
+/// ```dart
+/// OtpField(
+///   length: 6,
+///   autofocus: true,
+///   onCompleted: (code) => verify(code),
+/// )
+/// ```
 class OtpField extends StatefulWidget {
+  /// Creates an OTP input field.
+  ///
+  /// [length] must be greater than zero.
   const OtpField({
     super.key,
-    this.length = 4,
+    this.length = 6,
     this.controller,
     this.focusNode,
     this.onChanged,
@@ -30,27 +44,82 @@ class OtpField extends StatefulWidget {
     this.inputFormatters,
   }) : assert(length > 0);
 
+  /// Number of input boxes. Must be greater than zero.
   final int length;
+
+  /// Controls the entered text.
+  ///
+  /// If null, the field creates and disposes its own controller. If you pass
+  /// one, you are responsible for disposing it.
   final TextEditingController? controller;
+
+  /// Controls keyboard focus of the field.
+  ///
+  /// If null, the field creates and disposes its own focus node. If you pass
+  /// one, you are responsible for disposing it.
   final FocusNode? focusNode;
+
+  /// Called every time the entered text changes.
   final ValueChanged<String>? onChanged;
+
+  /// Called once when all [length] boxes are filled.
   final ValueChanged<String>? onCompleted;
+
+  /// Whether the field requests focus automatically when first built.
   final bool autofocus;
+
+  /// Whether the field accepts input.
   final bool enabled;
+
+  /// Whether to hide entered characters using [obscuringCharacter].
   final bool obscureText;
+
+  /// Character shown instead of the real one when [obscureText] is true.
   final String obscuringCharacter;
+
+  /// Whether to show the error style using [errorColor].
   final bool hasError;
+
+  /// Width and height of each box.
   final Size boxSize;
+
+  /// Horizontal space between boxes.
   final double spacing;
+
+  /// Corner radius of each box.
   final double borderRadius;
+
+  /// Text style of the characters inside the boxes.
+  ///
+  /// Defaults to the theme's `headlineSmall` with a semi-bold weight.
   final TextStyle? textStyle;
+
+  /// Border color of the box currently receiving input.
+  ///
+  /// Defaults to the theme's primary color.
   final Color? activeColor;
+
+  /// Border color of boxes that are not active.
+  ///
+  /// Defaults to the theme's outline color.
   final Color? inactiveColor;
+
+  /// Border color used when [hasError] is true.
+  ///
+  /// Defaults to the theme's error color.
   final Color? errorColor;
+
+  /// Background color of each box.
+  ///
+  /// Defaults to the theme's surface color.
   final Color? fillColor;
+
+  /// Keyboard type shown when the field is focused.
   final TextInputType keyboardType;
 
-  /// Defaults to digits only. Pass your own for alphanumeric codes.
+  /// Restricts which characters are accepted.
+  ///
+  /// Defaults to digits only. Pass your own list for alphanumeric codes.
   final List<TextInputFormatter>? inputFormatters;
 
   @override
@@ -119,8 +188,9 @@ class _OtpFieldState extends State<OtpField> {
     if (!widget.enabled) return;
     _focusNode.requestFocus();
     // Keep the caret at the end so backspace always removes the last digit.
-    _controller.selection =
-        TextSelection.collapsed(offset: _controller.text.length);
+    _controller.selection = TextSelection.collapsed(
+      offset: _controller.text.length,
+    );
   }
 
   @override

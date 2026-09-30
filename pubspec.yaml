@@ -1,6 +1,6 @@
 name: otp_wrap
 description: A customizable one-time-password (OTP) input field for Flutter. Supports paste, SMS autofill, obscured input, error states, and full styling control.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/sanjay-cheemeni/otp_wrap
 issue_tracker: https://github.com/sanjay-cheemeni/otp_wrap/issues
 
