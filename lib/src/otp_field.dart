@@ -204,7 +204,7 @@ class _OtpFieldState extends State<OtpField> {
         color: widget.fillColor ??
             (widget.enabled
                 ? theme.colorScheme.surface
-                : theme.disabledColor.withOpacity(0.08)),
+                : theme.disabledColor.withValues(alpha: 0.08)),
         borderRadius: BorderRadius.circular(widget.borderRadius),
         border: Border.all(color: borderColor, width: isActive ? 2 : 1),
       ),
