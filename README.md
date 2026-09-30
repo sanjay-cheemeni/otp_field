@@ -1,10 +1,10 @@
-# otp_field
+# otp_wrap
 
 A customizable one-time-password (OTP) input field for Flutter. Supports paste, SMS autofill, obscured input, error states, and full styling control.
 
 <!-- Add a screenshot or GIF here. It makes a big difference on pub.dev.
 <p align="center">
-  <img src="https://raw.githubusercontent.com/sanjay-cheemeni/otp_field/main/screenshots/demo.gif" width="300" />
+  <img src="https://raw.githubusercontent.com/sanjay-cheemeni/otp_wrap/main/screenshots/demo.gif" width="300" />
 </p>
 -->
 
@@ -27,19 +27,19 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  otp_field: ^0.0.1
+  otp_wrap: ^0.0.1
 ```
 
 Or run:
 
 ```bash
-flutter pub add otp_field
+flutter pub add otp_wrap
 ```
 
 Then import it:
 
 ```dart
-import 'package:otp_field/otp_field.dart';
+import 'package:otp_wrap/otp_wrap.dart';
 ```
 
 ## Usage
@@ -184,7 +184,7 @@ flutter run
 
 ## Additional information
 
-- **Bugs and feature requests:** please open an issue on the [issue tracker](https://github.com/sanjay-cheemeni/otp_field/issues).
+- **Bugs and feature requests:** please open an issue on the [issue tracker](https://github.com/sanjay-cheemeni/otp_wrap/issues).
 - **Contributions:** pull requests are welcome. Run `flutter analyze` and `flutter test` before submitting.
 
 ## License
